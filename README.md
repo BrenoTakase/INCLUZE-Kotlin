@@ -4,7 +4,7 @@
 As cidades e estabelecimentos não foram desenhados para todos. Pessoas com deficiência e neurodivergências enfrentam barreiras invisíveis no seu direito de ir e vir.
 
 ## A Solução
-O INCLUZE é uma plataforma de crowdsourcing ("Waze da Inclusão") onde a própria comunidade mapeia, avalia e reporta as condições reais de acessibilidade de espaços, ajudando tanto os cidadãos quanto fornecendo dados para políticas públicas (B2G) e mercado (B2B).
+O INCLUZE é uma plataforma de crowdsourcing onde a própria comunidade mapeia, avalia e reporta as condições reais de acessibilidade de espaços, ajudando tanto os cidadãos quanto fornecendo dados para políticas públicas (B2G) e mercado (B2B).
 
 ## Público Beneficiado
 Pessoas com deficiência (física, visual, auditiva), neurodivergentes, idosos, seus familiares e simpatizantes da causa.

@@ -20,10 +20,9 @@ Pessoas com deficiência (física, visual, auditiva), neurodivergentes, idosos, 
 - Room (Persistência Local)
 - ViewModel (Gerenciamento de Estado)
 
-## Equipe (Grupo Aether)
+## Equipe (Grupo INCLUZE)
 - Breno Takase Gomes
 - Murilo Mercadante
-- Jaime Luiz
 
 ## Como executar
 1. Abra o projeto no Android Studio.

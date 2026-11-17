@@ -63,8 +63,8 @@ com.aether.incluze
 ## Equipe (Grupo INCLUZE)
 | Nome completo | RM |
 |---|---|
-| Breno Takase Gomes | RM_____ |
-| Murilo Mercadante | RM_____ |
+| Breno Takase Gomes | RM554799 |
+| Murilo Mercadante | RM555926 |
 
 ## Como executar
 1. Abra o projeto no Android Studio.

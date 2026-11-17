@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <style name="Theme.Incluze" parent="android:Theme.Material.Light.NoActionBar">
-        <!-- Define a cor da barra de status para combinar com a interface azul -->
-        <item name="android:statusBarColor">#0099FF</item>
+        <!-- Barra de status no azul escuro da identidade INCLUZE -->
+        <item name="android:statusBarColor">#0B6E99</item>
         <item name="android:windowLightStatusBar">false</item>
+        <item name="android:windowBackground">#F4F8FB</item>
     </style>
 </resources>

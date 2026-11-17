@@ -1,23 +1,32 @@
 package com.aether.incluze.ui.screens
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AddLocationAlt
+import androidx.compose.material.icons.filled.Groups
 import androidx.compose.material.icons.filled.Map
+import androidx.compose.material.icons.filled.ReportProblem
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
+import com.aether.incluze.R
 import com.aether.incluze.ui.theme.IncluzeBlue
-import com.aether.incluze.ui.theme.TextDark
+import com.aether.incluze.ui.theme.IncluzeBlueDark
+import com.aether.incluze.ui.theme.IncluzeLightBlue
 
 @Composable
 fun HomeScreen(onNavigateToList: () -> Unit, onNavigateToForm: () -> Unit) {
@@ -25,75 +34,150 @@ fun HomeScreen(onNavigateToList: () -> Unit, onNavigateToForm: () -> Unit) {
         modifier = Modifier
             .fillMaxSize()
             .background(MaterialTheme.colorScheme.background)
-            .padding(24.dp),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
+            .verticalScroll(rememberScrollState())
     ) {
-        // Logo representation
-        Box(
+        // Cabeçalho com a identidade visual (logo da mão em Libras sobre o azul INCLUZE)
+        Column(
             modifier = Modifier
-                .size(120.dp)
-                .clip(RoundedCornerShape(32.dp))
-                .background(IncluzeBlue),
-            contentAlignment = Alignment.Center
+                .fillMaxWidth()
+                .clip(RoundedCornerShape(bottomStart = 36.dp, bottomEnd = 36.dp))
+                .background(Brush.verticalGradient(listOf(IncluzeBlueDark, IncluzeBlue)))
+                .padding(top = 40.dp, bottom = 36.dp, start = 24.dp, end = 24.dp),
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Text("I", color = Color.White, fontSize = 64.sp, fontWeight = FontWeight.Bold)
-        }
-        
-        Spacer(modifier = Modifier.height(32.dp))
-        
-        Text(
-            text = "INCLUZE", 
-            style = MaterialTheme.typography.headlineLarge.copy(
-                fontWeight = FontWeight.ExtraBold,
-                color = IncluzeBlue,
-                letterSpacing = 2.sp
+            Box(
+                modifier = Modifier
+                    .size(112.dp)
+                    .clip(CircleShape)
+                    .background(Color.White.copy(alpha = 0.18f)),
+                contentAlignment = Alignment.Center
+            ) {
+                Image(
+                    painter = painterResource(id = R.drawable.logo_incluze_mao),
+                    contentDescription = "Logo INCLUZE: mão fazendo a letra I em Libras",
+                    modifier = Modifier.height(80.dp)
+                )
+            }
+
+            Spacer(modifier = Modifier.height(20.dp))
+
+            Text(
+                text = "INCLUZE",
+                style = MaterialTheme.typography.headlineLarge,
+                color = Color.White
             )
-        )
-        
-        Spacer(modifier = Modifier.height(8.dp))
-        
-        Text(
-            text = "Construindo cidades para todos.\nO Waze da Inclusão Urbana.", 
-            style = MaterialTheme.typography.bodyLarge.copy(color = TextDark),
-            textAlign = TextAlign.Center
-        )
-        
-        Spacer(modifier = Modifier.height(48.dp))
-        
-        Button(
-            onClick = onNavigateToForm, 
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(64.dp)
-                .padding(bottom = 8.dp),
-            shape = RoundedCornerShape(16.dp),
-            colors = ButtonDefaults.buttonColors(containerColor = IncluzeBlue)
-        ) {
-            Icon(Icons.Default.AddLocationAlt, contentDescription = null, modifier = Modifier.size(24.dp))
-            Spacer(modifier = Modifier.width(12.dp))
-            Text("Reportar Barreira", fontSize = 16.sp, fontWeight = FontWeight.SemiBold)
+
+            Spacer(modifier = Modifier.height(6.dp))
+
+            Text(
+                text = "Construindo cidades para todos.",
+                style = MaterialTheme.typography.bodyLarge,
+                color = Color.White.copy(alpha = 0.92f),
+                textAlign = TextAlign.Center
+            )
         }
-        
-        OutlinedButton(
-            onClick = onNavigateToList, 
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(56.dp),
-            shape = RoundedCornerShape(16.dp),
-            colors = ButtonDefaults.outlinedButtonColors(contentColor = IncluzeBlue)
-        ) {
-            Icon(Icons.Default.Map, contentDescription = null, modifier = Modifier.size(24.dp))
-            Spacer(modifier = Modifier.width(12.dp))
-            Text("Explorar Mapeamento", fontSize = 16.sp, fontWeight = FontWeight.SemiBold)
+
+        Column(modifier = Modifier.padding(horizontal = 20.dp)) {
+            Spacer(modifier = Modifier.height(24.dp))
+
+            // Contextualização: problema e público beneficiado
+            InfoCard(
+                icon = Icons.Default.ReportProblem,
+                title = "O problema",
+                text = "Calçadas, transportes e estabelecimentos ainda têm barreiras invisíveis " +
+                    "que impedem pessoas de circular com autonomia."
+            )
+            Spacer(modifier = Modifier.height(12.dp))
+            InfoCard(
+                icon = Icons.Default.Groups,
+                title = "Para quem",
+                text = "Pessoas com deficiência física, visual ou auditiva, neurodivergentes, " +
+                    "idosos e suas famílias. A própria comunidade mapeia e avalia os locais."
+            )
+
+            Spacer(modifier = Modifier.height(28.dp))
+
+            Button(
+                onClick = onNavigateToForm,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(58.dp),
+                shape = MaterialTheme.shapes.medium,
+                elevation = ButtonDefaults.buttonElevation(defaultElevation = 2.dp)
+            ) {
+                Icon(Icons.Default.AddLocationAlt, contentDescription = null)
+                Spacer(modifier = Modifier.width(12.dp))
+                Text("Reportar barreira", style = MaterialTheme.typography.labelLarge)
+            }
+
+            Spacer(modifier = Modifier.height(12.dp))
+
+            OutlinedButton(
+                onClick = onNavigateToList,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(58.dp),
+                shape = MaterialTheme.shapes.medium
+            ) {
+                Icon(Icons.Default.Map, contentDescription = null)
+                Spacer(modifier = Modifier.width(12.dp))
+                Text("Ver locais mapeados", style = MaterialTheme.typography.labelLarge)
+            }
+
+            Spacer(modifier = Modifier.height(28.dp))
+
+            // ODS relacionados
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.Center
+            ) {
+                OdsChip("ODS 10 · Igualdade")
+                Spacer(modifier = Modifier.width(8.dp))
+                OdsChip("ODS 11 · Cidades")
+            }
+
+            Spacer(modifier = Modifier.height(24.dp))
         }
-        
-        Spacer(modifier = Modifier.weight(1f))
-        
-        Text(
-            text = "Projeto ODS 10 & 11 • Global Solution", 
-            style = MaterialTheme.typography.bodySmall.copy(color = MaterialTheme.colorScheme.onSurfaceVariant),
-            textAlign = TextAlign.Center
-        )
     }
+}
+
+@Composable
+private fun InfoCard(icon: ImageVector, title: String, text: String) {
+    Card(
+        modifier = Modifier.fillMaxWidth(),
+        shape = MaterialTheme.shapes.medium,
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
+        elevation = CardDefaults.cardElevation(defaultElevation = 1.dp)
+    ) {
+        Row(modifier = Modifier.padding(16.dp), verticalAlignment = Alignment.Top) {
+            Box(
+                modifier = Modifier
+                    .size(40.dp)
+                    .clip(CircleShape)
+                    .background(IncluzeLightBlue),
+                contentAlignment = Alignment.Center
+            ) {
+                Icon(icon, contentDescription = null, tint = IncluzeBlueDark, modifier = Modifier.size(22.dp))
+            }
+            Spacer(modifier = Modifier.width(14.dp))
+            Column {
+                Text(title, style = MaterialTheme.typography.titleMedium, color = MaterialTheme.colorScheme.onSurface)
+                Spacer(modifier = Modifier.height(2.dp))
+                Text(text, style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
+            }
+        }
+    }
+}
+
+@Composable
+private fun OdsChip(text: String) {
+    Text(
+        text = text,
+        style = MaterialTheme.typography.labelMedium,
+        color = IncluzeBlueDark,
+        modifier = Modifier
+            .clip(RoundedCornerShape(50))
+            .background(IncluzeLightBlue)
+            .padding(horizontal = 12.dp, vertical = 6.dp)
+    )
 }

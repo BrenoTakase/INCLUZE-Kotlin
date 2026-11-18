@@ -70,3 +70,6 @@ com.aether.incluze
 1. Abra o projeto no Android Studio.
 2. Sincronize o Gradle.
 3. Execute o aplicativo em um emulador ou dispositivo físico (Android 7.0+ / API 24).
+
+## Link do Pitch
+https://youtu.be/es5Ei2XbayQ
